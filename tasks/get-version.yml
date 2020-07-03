@@ -1,0 +1,12 @@
+---
+
+- name: Get the version information of the latest release of asciinema
+  uri:
+    url: https://pypi.org/pypi/asciinema/json
+    return_content: true
+    body_format: json
+  register: asciinema_get_latest_version
+
+- name: Ensure the asciinema_version variable is set
+  set_fact:
+    asciinema_version: "{{ asciinema_get_latest_version.json.info.version }}"

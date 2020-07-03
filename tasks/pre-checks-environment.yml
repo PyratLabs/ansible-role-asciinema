@@ -1,0 +1,14 @@
+---
+
+- name: Check the path for Python
+  command: which python3
+  register: asciinema_check_python_3_path
+  failed_when: asciinema_check_python_3_path.rc > 0
+  changed_when: false
+  when: asciinema_python3_path is not defined
+
+- name: Ensure the path to Python 3 is set as a fact
+  set_fact:
+    asciinema_python3_path: "{{ asciinema_check_python_3_path.stdout }}"
+    asciinema_ansible_python_interpreter: "{{ ansible_python_interpreter | default(omit) }}"
+  when: asciinema_python3_path is not defined

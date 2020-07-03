@@ -1,0 +1,22 @@
+---
+
+# Use a specific version of asciinema, eg. `2.0.2`. Specify `false` for latest.
+asciinema_version: false
+
+# Installation directory to put asciinema virtual environments.
+asciinema_install_dir: "{{ ansible_user_dir }}/.virtualenvs"
+
+# Name for the currently active asciinema Virtualenv.
+asciinema_current_dirname: asciinema
+
+# Allow venv to inherit packages from global site-packages
+asciinema_venv_site_packages: false
+
+# Install a venv helper to launch virtualenv executables from a "bin" directory
+asciinema_install_venv_helper: true
+
+# "bin" directory for venv helper installation
+asciinema_bin_dir: "{{ ansible_user_dir }}/bin"
+
+# Allow role to install OS dependencies.
+asciinema_install_os_dependencies: false
