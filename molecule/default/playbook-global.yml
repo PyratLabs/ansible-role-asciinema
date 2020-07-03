@@ -3,7 +3,7 @@
   hosts: all
   become: true
   vars:
-    asciinema_install_os_dependencies: false
+    asciinema_install_os_dependencies: true
     asciinema_install_dir: /opt/asciinema/bin
     asciinema_bin_dir: /usr/bin
     asciinema_current_dirname: current
