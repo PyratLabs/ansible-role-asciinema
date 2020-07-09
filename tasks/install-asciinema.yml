@@ -1,5 +1,11 @@
 ---
 
+- name: Ensure the venv suffix is set
+  set_fact:
+    asciinema_venv_suffix: "{{ asciinema_version }}"
+  when: asciinema_venv_suffix is not defined
+        or not asciinema_venv_suffix
+
 - name: Ensure the asciinema install directory exists
   file:
     path: "{{ asciinema_install_dir }}"
@@ -21,7 +27,7 @@
     name: "{{ item }}"
     version: "{{ asciinema_version }}"
     state: present
-    virtualenv: "{{ asciinema_install_dir }}/asciinema-{{ asciinema_version }}"
+    virtualenv: "{{ asciinema_install_dir }}/{{ asciinema_venv_name }}-{{ asciinema_venv_suffix }}"
     virtualenv_command: "{{ asciinema_python3_path }} -m venv"
     virtualenv_site_packages: "{{ asciinema_venv_site_packages | default(False) }}"
   loop:
@@ -34,14 +40,14 @@
 
 - name: Ensure the current release is symlinked in the install directory
   file:
-    src: "{{ asciinema_install_dir }}/asciinema-{{ asciinema_version }}"
-    dest: "{{ asciinema_install_dir }}/{{ asciinema_current_dirname }}"
+    src: "{{ asciinema_install_dir }}/{{ asciinema_venv_name }}-{{ asciinema_venv_suffix }}"
+    dest: "{{ asciinema_install_dir }}/{{ asciinema_venv_name }}"
     state: link
 
 - name: Ensure venv wrapper exists in virtualenv bin directory
   template:
     src: venv.sh.j2
-    dest: "{{ asciinema_install_dir }}/asciinema-{{ asciinema_version }}/bin/venv"
+    dest: "{{ asciinema_install_dir }}/{{ asciinema_venv_name }}-{{ asciinema_venv_suffix }}/bin/venv"
     mode: 0755
   loop:
     - python

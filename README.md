@@ -29,7 +29,8 @@ my spare time so I cannot promise a speedy fix delivery.
 |-------------------------------------|-------------------------------------------------------------------------------|----------------------|
 | `asciinema_version`                 | Use a specific version of asciinema, eg. `2.0.2`. Specify `false` for latest. | `false`              |
 | `asciinema_install_dir`             | Installation directory to put asciinema virtual environments.                 | `$HOME/.virtualenvs` |
-| `asciinema_current_dirname`         | Name for the currently active asciinema Virtualenv.                           | asciinema            |
+| `asciinema_venv_name`               | Name for the asciinema Virtualenv.                                            | asciinema            |
+| `asciinema_venv_suffix`             | Add a custom suffix to virtualenv.                                            | `asciinema_version`  |
 | `asciinema_venv_site_packages`      | Allow venv to inherit packages from global site-packages.                     | `false`              |
 | `asciinema_install_venv_helper`     | Install a venv helper to launch venv executables from a "bin" directory.      | `true`               |
 | `asciinema_bin_dir`                 | "bin" directory to install venv-helpers to.                                   | `$HOME/bin`          |
@@ -60,7 +61,7 @@ Example playbook for installing the latest asciinema version globally:
     asciinema_install_os_dependencies: true
     asciinema_install_dir: /opt/asciinema/bin
     asciinema_bin_dir: /usr/bin
-    asciinema_current_dirname: current
+    asciinema_venv_ame: current
   roles:
     - role: xanmanning.asciinema
 ```
@@ -71,7 +72,7 @@ You need to activate the python3 virtual environment to be able to access `ascii
 This is done as per the below:
 
 ```bash
-source {{ asciinema_install_dir }}/{{ asciinema_current_dirname }}/bin/activate
+source {{ asciinema_install_dir }}/{{ asciinema_venv_name }}/bin/activate
 ```
 
 In the above example global installation playbook, this would look like the

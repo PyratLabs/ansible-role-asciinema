@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
-source "{{ asciinema_install_dir }}/{{ asciinema_current_dirname }}/bin/activate"
+source "{{ asciinema_install_dir }}/{{ asciinema_venv_name }}/bin/activate"
 
-{{ asciinema_install_dir }}/{{ asciinema_current_dirname }}/bin/{{ item }} $@
+{{ asciinema_install_dir }}/{{ asciinema_venv_name }}/bin/{{ item }} $@
 
 deactivate

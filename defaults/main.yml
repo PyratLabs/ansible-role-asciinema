@@ -6,8 +6,11 @@ asciinema_version: false
 # Installation directory to put asciinema virtual environments.
 asciinema_install_dir: "{{ ansible_user_dir }}/.virtualenvs"
 
-# Name for the currently active asciinema Virtualenv.
-asciinema_current_dirname: asciinema
+# Name for the asciinema Virtualenv.
+asciinema_venv_name: asciinema
+
+# Add a custom suffix to virtualenv (default: asciinema_version)
+asciinema_venv_suffix: false
 
 # Allow venv to inherit packages from global site-packages
 asciinema_venv_site_packages: false
